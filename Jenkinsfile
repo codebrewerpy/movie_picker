@@ -7,6 +7,9 @@ void test() {
     sh 'echo "Hi its meeeee!" >> itsMe.txt'
     sh 'touch itsMe.txt'
 }
+repo = [
+    imageNmae: 'its.a.test:123/idontknow.work/python:1'
+]
 pipeline {
     agent any
 
@@ -14,7 +17,7 @@ pipeline {
         stage('Build Docker') {
             steps {
                 script {
-                    dockerImage = docker.build('its.a.test:123/idontknow.work/python:1')
+                    dockerImage = docker.build("${repo.imagename}")
                 }
             }
         }
@@ -23,7 +26,7 @@ pipeline {
             agent {
                 docker {
                     //image "${dockerImage.id}"
-                    image 'its.a.test:123/idontknow.work/python:1'
+                    image "${repo.imagename}"
                     reuseNode true
                 }
             }
