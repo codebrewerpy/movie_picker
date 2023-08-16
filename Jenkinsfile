@@ -23,13 +23,14 @@ pipeline {
             agent {
                 docker {
                     image "${dockerImage.id}"
-                    // reuseNode true
+                    reuseNode true
                 }
             }
             steps{
                 script{
                     sh 'python3 hello.py'
                     test()
+                    sh 'python3 ./folder/bye.py'
                 }
             }
         }
