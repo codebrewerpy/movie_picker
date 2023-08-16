@@ -1,4 +1,12 @@
 def dockerImage = ''
+void test() {
+    sh 'touch try.txt'
+    sh 'ls -la'
+    sh 'cd / && ls -d */'
+    sh 'touch itsMe.txt'
+    sh 'echo "Hi its meeeee!" >> itsMe.txt'
+    sh 'touch itsMe.txt'
+}
 pipeline {
     agent any
 
@@ -21,8 +29,7 @@ pipeline {
             steps{
                 script{
                     sh 'python3 hello.py'
-                    sh 'ls -la'
-                    sh 'cd / && ls -d */'
+                    test()
                 }
             }
         }
