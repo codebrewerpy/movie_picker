@@ -22,7 +22,8 @@ pipeline {
         stage('Test Dockerimage') {
             agent {
                 docker {
-                    image "${dockerImage.id}"
+                    //image "${dockerImage.id}"
+                    image 'its.a.test:123/idontknow.work/python:1'
                     reuseNode true
                 }
             }
