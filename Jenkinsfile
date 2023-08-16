@@ -6,7 +6,7 @@ pipeline {
         stage('Build Docker') {
             steps {
                 script {
-                    dockerImage = docker.build('python:1')
+                    dockerImage = docker.build('its.a.test:123/python:1')
                 }
             }
         }
