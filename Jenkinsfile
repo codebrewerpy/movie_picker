@@ -13,11 +13,12 @@ pipeline {
 
         stage('Test Dockerimage') {
             agent {
-                docker {$"dockerImage".id}
+                docker "${dockerImage}.id"
+                reuseNode true
             }
             steps{
                 script{
-                    python3 hello.py                    
+                    sh 'python3 hello.py'                    
                 }
             }
         }
