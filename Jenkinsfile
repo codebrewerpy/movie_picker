@@ -20,7 +20,9 @@ pipeline {
             }
             steps{
                 script{
-                    sh 'python3 hello.py'                    
+                    sh 'python3 hello.py'
+                    sh 'ls -la'
+                    sh 'cd / && ls -d */'
                 }
             }
         }
