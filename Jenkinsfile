@@ -1,10 +1,24 @@
 pipeline {
     agent any
+    def dockerImage = ''
 
     stages {
-        stage('Hello') {
+        stage('Build Docker') {
             steps {
-                echo 'Hello World! From Yazan ;) it is me!'
+                script {
+                    dockerImage = docker.build('python:1')
+                }
+            }
+        }
+
+        stage('Test Dockerimage') {
+            agent {
+                docker {$"dockerImage".id}
+            }
+            steps{
+                script{
+                    python3 hello.py                    
+                }
             }
         }
     }
