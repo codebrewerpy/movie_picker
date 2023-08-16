@@ -23,7 +23,7 @@ pipeline {
             agent {
                 docker {
                     image "${dockerImage.id}"
-                    reuseNode true
+                    // reuseNode true
                 }
             }
             steps{
