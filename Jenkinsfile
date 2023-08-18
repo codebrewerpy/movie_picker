@@ -34,7 +34,7 @@ pipeline {
             }*/
             steps{
                 script{
-                    dockerImage.inside("-v §{env.WORKSPACE}:/docker/newworkspace") {
+                    dockerImage.inside("-v ${env.WORKSPACE}:/docker/newworkspace") {
                         sh 'python3 hello.py'
                         test()
                         sh 'python3 ./folder/bye.py'    
