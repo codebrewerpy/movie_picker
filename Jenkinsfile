@@ -7,7 +7,7 @@ void test() {
     sh 'touch itsMe.txt'
     sh 'echo "Hi its meeeee!" >> itsMe.txt'
     sh 'touch itsMe.txt'
-    sh 'cd / && pwd'
+    //sh 'cd / && pwd'
 }
 repo = [
     imageNmae: 'its.a.test:123/idontknow.work/python:1'
@@ -34,7 +34,7 @@ pipeline {
             }*/
             steps{
                 script{
-                    dockerImage.inside {
+                    dockerImage.inside("-v §{env.WORKSPACE}:/docker/newworkspace") {
                         sh 'python3 hello.py'
                         test()
                         sh 'python3 ./folder/bye.py'    
