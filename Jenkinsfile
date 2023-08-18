@@ -1,11 +1,15 @@
 def dockerImage = ''
 void test() {
+    sh 'pwd'
+    sh 'pwd -p'
     sh 'touch try.txt'
     sh 'ls -la'
     sh 'cd / && ls -d */'
     sh 'touch itsMe.txt'
     sh 'echo "Hi its meeeee!" >> itsMe.txt'
     sh 'touch itsMe.txt'
+    sh 'pwd'
+    sh 'pwd -p'
 }
 repo = [
     imageNmae: 'its.a.test:123/idontknow.work/python:1'
