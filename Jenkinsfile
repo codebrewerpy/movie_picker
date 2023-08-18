@@ -23,18 +23,21 @@ pipeline {
         }
 
         stage('Test Dockerimage') {
-            agent {
+            /*agent {
                 docker {
                     //image "${dockerImage.id}"
                     image "${repo.imagename}"
                     reuseNode true
                 }
-            }
+            }*/
             steps{
                 script{
-                    sh 'python3 hello.py'
-                    test()
-                    sh 'python3 ./folder/bye.py'
+                    dockerImage.inside{
+                        sh 'python3 hello.py'
+                        test()
+                        sh 'python3 ./folder/bye.py'    
+                    }
+                    
                 }
             }
         }
