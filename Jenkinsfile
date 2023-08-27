@@ -49,7 +49,7 @@ pipeline {
         }
     }
 }
-String tag() {
+def tag() {
     def tarFile = findFiles(glob: '**/*_linux_*.tar.bz2').first()
     if (tarFile) {
         def tag = tarFile.name.replaceAll('_linux_|\\.tar\\.bz2', '')
