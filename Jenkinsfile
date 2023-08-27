@@ -42,7 +42,7 @@ pipeline {
                         sh 'python3 hello.py'
                         test()
                         sh 'python3 ./folder/bye.py'    
-                    }+/
+                    }*/
                     
                 }
             }
