@@ -21,7 +21,7 @@ pipeline {
                 script {
                     //dockerImage = docker.build("${repo.imagename}")
                     echo 'hi'
-                    String tag()
+                    tag()
                     
                 }
             }
