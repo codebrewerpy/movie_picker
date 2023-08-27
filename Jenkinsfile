@@ -19,7 +19,10 @@ pipeline {
         stage('Build Docker') {
             steps {
                 script {
-                    dockerImage = docker.build("${repo.imagename}")
+                    //dockerImage = docker.build("${repo.imagename}")
+                    echo 'hi'
+                    String tag()
+                    
                 }
             }
         }
@@ -34,14 +37,25 @@ pipeline {
             }*/
             steps{
                 script{
-                    dockerImage.inside("-v ${env.WORKSPACE}:/docker/newworkspace") {
+                    echo 'Bye'
+                    /*dockerImage.inside("-v ${env.WORKSPACE}:/docker/newworkspace") {
                         sh 'python3 hello.py'
                         test()
                         sh 'python3 ./folder/bye.py'    
-                    }
+                    }+/
                     
                 }
             }
         }
     }
+}
+String tag() {
+    def tarFile = findFiles(glob: '**/*_linux_*.tar.bz2').first()
+    if (tarFile) {
+        def tag = tarFile.name.replaceAll('_linux_|\\.tar\\.bz2', '')
+        echo "Extracted Tag: ${tag}"
+    } else {
+        error "No tar.bz2 file found in workspace."
+    }
+    
 }
