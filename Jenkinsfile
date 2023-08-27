@@ -12,6 +12,16 @@ void test() {
 repo = [
     imageNmae: 'its.a.test:123/idontknow.work/python:1'
 ]
+def tag() {
+    def tarFile = findFiles(glob: "**/*_linux_*.tar.bz2").first()
+    if (tarFile) {
+        def tag = tarFile.name.replaceAll('_linux_|\\.tar\\.bz2', '')
+        echo "Extracted Tag: ${tag}"
+    } else {
+        error "No tar.bz2 file found in workspace."
+    }
+    
+}
 pipeline {
     agent any
 
@@ -49,13 +59,4 @@ pipeline {
         }
     }
 }
-def tag() {
-    def tarFile = findFiles(glob: "**/*_linux_*.tar.bz2").first()
-    if (tarFile) {
-        def tag = tarFile.name.replaceAll('_linux_|\\.tar\\.bz2', '')
-        echo "Extracted Tag: ${tag}"
-    } else {
-        error "No tar.bz2 file found in workspace."
-    }
-    
-}
+
