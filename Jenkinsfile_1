@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Hello from Build"
+                // Your build steps here
+  
+            }
+        }
+        stage('Run Python Script') {
+            steps {
+                sh "python my_python_script.py"
+            }
+        }
+    }
+}
